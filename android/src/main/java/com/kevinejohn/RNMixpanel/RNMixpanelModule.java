@@ -242,6 +242,15 @@ public class RNMixpanelModule extends ReactContextBaseJavaModule implements Life
         promise.resolve(null);
     }
 
+        @ReactMethod
+    public void unregisterSuperProperty(final String propertyName, final String apiToken, Promise promise) {
+        final MixpanelAPI instance = getInstance(apiToken);
+        synchronized(instance) {
+            instance.unregisterSuperProperty(propertyName);
+        }
+        promise.resolve(null);
+    }
+
     @ReactMethod
     public void initPushHandling (final String token, final String apiToken, Promise promise) {
         final MixpanelAPI instance = getInstance(apiToken);

@@ -101,6 +101,12 @@ export class MixpanelInstance {
     return RNMixpanel.registerSuperPropertiesOnce(properties, this.apiToken)
   }
 
+  unregisterSuperProperty(propertyName: string): Promise<void> {
+    if (!this.initialized) throw new Error(uninitializedError('unregisterSuperProperty'))
+
+    return RNMixpanel.unregisterSuperProperty(propertyName, this.apiToken)
+  }
+
   initPushHandling(token: string): Promise<void> {
     if (!this.initialized) throw new Error(uninitializedError('initPushHandling'))
 
