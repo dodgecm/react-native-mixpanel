@@ -277,6 +277,12 @@ export default {
     defaultInstance.registerSuperPropertiesOnce(properties)
   },
 
+  unregisterSuperProperty(propertyName: string) {
+    if (!defaultInstance) throw new Error(NO_INSTANCE_ERROR)
+
+    defaultInstance.unregisterSuperProperty(propertyName)
+  },
+
   initPushHandling(token: string) {
     if (!defaultInstance) throw new Error(NO_INSTANCE_ERROR)
 
