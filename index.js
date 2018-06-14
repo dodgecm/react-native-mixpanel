@@ -77,10 +77,10 @@ export class MixpanelInstance {
     return RNMixpanel.createAlias(alias, this.apiToken)
   }
 
-  identify(userId: string): Promise<void> {
+  identify(userId: string, usePeople: boolean = true): Promise<void> {
     if (!this.initialized) throw new Error(uninitializedError('identify'))
 
-    return RNMixpanel.identify(userId, this.apiToken)
+    return RNMixpanel.identify(userId, usePeople, this.apiToken)
   }
 
   timeEvent(event: string): Promise<void> {
