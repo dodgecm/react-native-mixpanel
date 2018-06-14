@@ -100,6 +100,16 @@ RCT_EXPORT_METHOD(createAlias:(NSString *)old_id
     resolve(nil);
 }
 
+// create Alias
+RCT_EXPORT_METHOD(createAlias:(NSString *)old_id
+                  usePeople:(BOOL)usePeople
+                  apiToken:(NSString *)apiToken
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  reject:(RCTPromiseRejectBlock)reject) {
+  [[self getInstance:apiToken] createAlias:old_id forDistinctID:[self getInstance:apiToken].distinctId usePeople:usePeople];
+  resolve(nil);
+}
+
 // identify
 RCT_EXPORT_METHOD(identify:(NSString *)uniqueId
                   apiToken:(NSString *)apiToken

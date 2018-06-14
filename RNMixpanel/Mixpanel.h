@@ -631,6 +631,20 @@
  */
 - (void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID;
 
+/*!
+ Creates a distinct_id alias from alias to original id.
+ 
+ This method is not intended to be used unless you wish to prevent updating the Mixpanel
+ People distinct ID value by passing a value of NO to the usePeople param. This can be
+ useful if the user wishes to prevent People updates from being sent until the identify
+ method is called.
+ 
+ @param alias         the new distinct_id that should represent original
+ @param distinctID     the old distinct_id that alias will be mapped to
+ @param usePeople bool controls whether or not to set the people distinctId to the event distinctId
+ */
+- (void)createAlias:(NSString *)alias forDistinctID:(NSString *)distinctID usePeople:(BOOL)usePeople;
+
 - (NSString *)libVersion;
 
 

@@ -71,10 +71,10 @@ export class MixpanelInstance {
     return RNMixpanel.flush(this.apiToken)
   }
 
-  alias(alias: string): Promise<void> {
+  alias(alias: string, usePeople: boolean = true): Promise<void> {
     if (!this.initialized) throw new Error(uninitializedError('createAlias'))
 
-    return RNMixpanel.createAlias(alias, this.apiToken)
+    return RNMixpanel.createAlias(alias, usePeople, this.apiToken)
   }
 
   identify(userId: string, usePeople: boolean = true): Promise<void> {
@@ -247,10 +247,10 @@ export default {
     defaultInstance.flush()
   },
 
-  createAlias(alias: string) {
+  createAlias(alias: string, usePeople: boolean = true) {
     if (!defaultInstance) throw new Error(NO_INSTANCE_ERROR)
 
-    defaultInstance.alias(alias)
+    defaultInstance.alias(alias, usePeople)
   },
 
   identify(userId: string, usePeople: boolean = true) {
