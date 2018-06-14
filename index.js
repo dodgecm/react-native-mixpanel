@@ -253,10 +253,10 @@ export default {
     defaultInstance.alias(alias)
   },
 
-  identify(userId: string) {
+  identify(userId: string, usePeople: boolean = true) {
     if (!defaultInstance) throw new Error(NO_INSTANCE_ERROR)
 
-    defaultInstance.identify(userId)
+    defaultInstance.identify(userId, usePeople)
   },
 
   timeEvent(event: string) {
