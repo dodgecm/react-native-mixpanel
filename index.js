@@ -1,6 +1,6 @@
 // @flow
 'use strict'
-import { NativeModules } from 'react-native'
+import { NativeModules, Platform } from 'react-native'
 const { RNMixpanel } = NativeModules
 
 /*
@@ -74,13 +74,21 @@ export class MixpanelInstance {
   alias(alias: string, usePeople: boolean = true): Promise<void> {
     if (!this.initialized) throw new Error(uninitializedError('createAlias'))
 
-    return RNMixpanel.createAlias(alias, usePeople, this.apiToken)
+    if (Platform.OS === 'ios') {
+      return RNMixpanel.createAlias(alias, usePeople, this.apiToken)
+    } else {
+      return RNMixpanel.createAlias(alias, this.apiToken)
+    }
   }
 
   identify(userId: string, usePeople: boolean = true): Promise<void> {
     if (!this.initialized) throw new Error(uninitializedError('identify'))
 
-    return RNMixpanel.identify(userId, usePeople, this.apiToken)
+    if (Platform.OS === 'ios') {
+      return RNMixpanel.identify(userId, usePeople, this.apiToken)
+    } else {
+      return RNMixpanel.identify(userId, this.apiToken)
+    }
   }
 
   timeEvent(event: string): Promise<void> {
